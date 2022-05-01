@@ -1,0 +1,108 @@
+@charset "UTF-8";
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+#wrapper {
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 70px 1fr;
+	grid-template-rows: 70px 1fr;
+}
+
+#l-logo {
+	grid-column: 1/2;
+	grid-row: 1/2;
+	border-bottom: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+}
+
+#l-menutop {
+	grid-column: 2/3;
+	grid-row: 1/2;
+	border-bottom: 1px solid #ddd;
+}
+
+#l-menuleft {
+	grid-column: 1/2;
+	grid-row: 2/3;
+	overflow: auto;
+	border-right: 1px solid #ddd;
+}
+
+#l-content {
+	grid-column: 2/3;
+	grid-row: 2/3;
+	background-color: var(--ss-bg-content);
+}
+
+.offcanvas {
+	width: 700px;
+}
+
+td span {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	border-radius: 0.3rem;
+}
+td span:hover {
+	cursor: pointer;
+	background-color: var(--bs-green);
+}
+#englearn {
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 800px 400px;
+	grid-template-rows: 400px 1fr;
+	justify-content: center;
+	align-content: center;
+}
+#englearn-player {
+	grid-column: 1/2;
+	grid-row: 1/2;
+}
+#englearn-videolist {
+	grid-column: 1/2;
+	grid-row: 2/3;
+}
+#englearn-currentsub {
+	grid-column: 2/3;
+	grid-row: 1/2;
+}
+#englearn-listsub {
+	grid-column: 2/3;
+	grid-column: 2/3;
+}
+#videolist {
+	width: 100%;
+	height: 400px;
+	overflow: auto;
+}
+.list-group-item {
+	position: static;
+}
+#b-edit-listvideo {
+	width: 100%;
+	height: 250px;
+	overflow: auto;
+}
+.videolearn-active {
+	background-color: #e5e5e5;
+}
+#sub-word-content span:hover {
+	cursor: pointer;
+	background-color: #e3e3e3 !important;
+}
+#sub-word-content {
+	height: 800px;
+}
+.hover:hover {
+	cursor: pointer;
+	color: red;
+}

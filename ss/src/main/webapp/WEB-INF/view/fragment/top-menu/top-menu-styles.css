@@ -1,0 +1,15 @@
+@charset "UTF-8";
+.trash-hover:hover {
+	color: red;
+	cursor: pointer;
+	opacity: 0.8;
+}
+.pen-hover:hover {
+	color: green;
+	cursor: pointer;
+	opacity: 0.5;
+}
+#b-manage-note-filter {
+	height: 100px;
+	width: 100%;
+}
