@@ -1,0 +1,25 @@
+@startmindmap
++ Planing Project
+-- Design
+--- Requirement
+--- Template
+---- Wireframe Design
+---- Photoshop
+---- HTML
+--- Database
+---- Entity Design
+---- Create DB
+--- UML
+---- Use Case
+---- Activity
+---- Class
+---- Sequence
+++ Dev
++++ Create Structure
++++ BackEnd
+++++ Code
+++++ Test
++++ FrontEnd
+++++ Code
+++++ Test
+@endmindmap

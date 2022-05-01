@@ -1,0 +1,94 @@
+@startuml
+entity video {
+*id: int 
+*title: varchar(100) 
+*sub: text
+*view_count: int
+*url: varchar(100) 
+*group_id: int 
+}
+entity group {
+*id: int 
+*name: varchar(30) 
+*user_id: int 
+}
+entity user {
+*id: int
+*fullname: varchar(100)
+*mobile: varchar(15)
+*email: varchar(50) 
+*username: varchar(100) 
+*password_hash: varchar(32) 
+*registered_at: DATETIME
+*last_login: DATETIME
+*avatar_url: varchar(100)
+}
+entity word {
+*id: int 
+*word: varchar(20) 
+}
+entity user_word_known {
+*id: int 
+*word_id: int 
+*user_id: int 
+}
+entity ipa_symbol {
+*id: int 
+*symbol: varchar(2) 
+*video_id: int
+*image_guide_url: varchar(100)
+*example: varchar(20)
+*example_phonetic: varchar(20)
+*group_id: int 
+}
+entity document {
+*id: int 
+*title: varchar(100) not null
+*group_id: int 
+*content: text 
+}
+user |o--o{ group
+user ||--o{ user_word_known
+word ||--o{ user_word_known
+group ||--o{ video
+group ||--o{ document
+group ||--|{ ipa_symbol
+ipa_symbol --||video
+
+note left of user
+ id: not null auto_increment 
+ username: not null unique
+ password_hash: not null
+end note
+
+note left of video
+ id:not null auto_increment 
+ group_id: not null
+ title: not null
+ url: not null
+end note
+note left of group
+ id: not null auto_increment 
+ name: not null
+end note
+note left of ipa_symbol
+ id: not null auto_increment 
+ group_id: not null
+ symbol: not null unique
+end note
+note right of document
+ id: not null auto_increment
+ group_id: not null
+ content: not null
+ title: not null
+end note
+note right of user_word_known
+ id: not null auto_increment
+ word_id: not null
+ user_id: not null
+end note
+note right of word
+ id: not null auto_increment
+ word: not null unique
+end note
+@enduml
