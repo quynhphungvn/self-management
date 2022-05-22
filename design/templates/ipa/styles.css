@@ -1,0 +1,136 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+ul {
+    list-style-type: none;
+}
+#left-menu {
+    position: absolute;
+    width: 300px;
+    height: 100%;
+    background-color: #ccc;
+    top: 0;
+    left: -300px; 
+    z-index: 1;
+    transition: left 0.5s;
+    padding: 1rem;
+}
+#left-menu header{
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+#left-menu header a {
+    font-size: 2rem;
+    color: blue;
+}
+#left-menu header button {
+    background-color: inherit;
+    border: none;
+    font-size: 1.5rem;
+}
+#left-menu header button:hover {
+    color: orange;
+    cursor: pointer;
+}
+#left-menu nav {
+    margin-top: 1rem;
+}
+#left-menu nav a {
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem;
+    font-weight: bold;
+    color: palevioletred;
+}
+#left-menu nav a:hover {
+    background-color: white;
+    color: black;
+}
+#header {
+    height: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+}
+#header button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+}
+#header button:hover {
+    cursor: pointer;
+    color: orange;
+}
+#header img {
+    border-radius: 50%;
+}
+#header img:hover {
+    cursor: pointer;
+}
+.tab {
+    background-color: #eee;
+    display: flex;
+}
+.tab button {
+    padding: 0.5rem 0.75rem;
+    border: none;
+    background-color: #ddd;
+}
+.tab button:hover {
+    background-color: #ccc;
+    cursor: pointer;
+}
+.tab button.active {
+    background-color: #aaa;
+}
+#player .tab-content:nth-child(3) {
+    display: none;
+}
+#player h3 {
+    text-align: center;
+}
+#symbols td {
+    padding: 0.25rem 0.75rem;
+    border-radius: 5px;
+    text-align: center;
+}
+#symbols td:hover {
+    background-color: green;
+    cursor: pointer;
+    
+}
+#symbols td.active {
+    background-color: green;
+}
+@media screen and (min-width: 992px) {
+    main {
+        display: flex;
+        max-width: 1440px;
+        margin: 0 auto;
+        margin-top: 1rem;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    #player {
+        flex-grow: 3;
+    }
+    #player h3 {
+        font-size: 2rem;
+        
+    }
+    #symbols {
+        width: 300px;
+        flex-grow: 2;
+        padding: 0 0 1rem 1rem;
+        align-self: start;
+    }
+    
+}
