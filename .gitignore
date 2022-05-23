@@ -1,0 +1,14 @@
+######################
+# Eclipse
+######################
+ss/.project
+ss/.classpath
+ss/.settings/
+
+######################
+# Maven
+######################
+ss/target/
+ss/template/libs
+######################
+design/templates/src
