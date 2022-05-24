@@ -1,9 +1,8 @@
 @startuml
-entity video {
+entity video_learning {
 *id: int 
 *title: varchar(100) 
 *sub: text
-*view_count: int
 *url: varchar(100) 
 *group_id: int 
 }
@@ -24,6 +23,18 @@ entity user {
 *avatar_url: varchar(100)
 *local_root_video_url: varchar(100)
 }
+entity user_ipa_symbol {
+*id: int
+*user_id: int
+*ipa_symbol_id: int
+*view_count: int
+}
+entity user_video_learning {
+*id: int
+*user_id: int
+*video_learning_id: int
+*view_count: int
+}
 entity dictionary {
 *id: int 
 *word: varchar(20) 
@@ -42,19 +53,21 @@ entity ipa_symbol {
 *example: varchar(20)
 *example_phonetic: varchar(20)
 *type: varchar(15)
-*view_count: int
 }
 user |o--o{ group_video
 user ||--o{ user_word_known
+user ||--|| user_ipa_symbol
+user ||--|| user_video_learning
+ipa_symbol ||--|| user_ipa_symbol
 dictionary ||--o{ user_word_known
-group_video ||--o{ video
-
+group_video ||--o{ video_learning
+video_learning ||--|| user_video_learning
 note left of user
  id: not null auto_increment 
  username: not null unique
  password_hash: not null
 end note
-note left of video
+note left of video_learning
  id:not null auto_increment 
  group_id: not null
  title: not null
