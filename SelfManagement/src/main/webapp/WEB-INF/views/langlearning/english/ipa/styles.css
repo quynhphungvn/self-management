@@ -7,6 +7,14 @@
 ul {
     list-style-type: none;
 }
+table, th, td {
+	border: 1px solid #aaa;
+}
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 #left-menu {
     position: absolute;
     width: 300px;
@@ -94,8 +102,24 @@ ul {
 #player .tab-content:nth-child(3) {
     display: none;
 }
-#player h3 {
+#symbol-video {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 1rem;
+}
+#symbol-title {
+	display: inline-block;
+	padding: 0.5rem;
+}
+h4, h5 {
     text-align: center;
+}
+#symbols {
+	margin-top: 2rem;
+}
+#symbols tr {
+	border-bottom: 1px solid #aaa;
 }
 #symbols td {
     padding: 0.25rem 0.75rem;
@@ -113,6 +137,8 @@ ul {
 @media screen and (min-width: 992px) {
     main {
         display: flex;
+        flex-direction: row;
+        justify-content: center;
         max-width: 1440px;
         margin: 0 auto;
         margin-top: 1rem;
@@ -130,8 +156,9 @@ ul {
     #symbols {
         width: 300px;
         flex-grow: 2;
-        padding: 0 0 1rem 1rem;
+        padding: 1rem;
         align-self: start;
+        margin-left: 1rem;
     }
     
 }

@@ -22,6 +22,6 @@
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>IPAAPIController</servlet-name>
-  	<url-pattern>/langlearning/english/ipa/api/</url-pattern>
+  	<url-pattern>/langlearning/english/api/ipa-symbol/</url-pattern>
   </servlet-mapping>
 </web-app>
