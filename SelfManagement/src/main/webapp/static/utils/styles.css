@@ -1,0 +1,63 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+ul {
+    list-style-type: none;
+}
+input {
+	outline: none;
+	padding: 0.25rem 0.5rem;
+}
+select {
+	outline: none;
+	padding: 0.25rem 0.5rem;
+}
+textarea {
+	outline: none;
+	padding: 0.25rem 0.5rem;
+}
+.btn {
+	padding: 0.25rem 0.5rem;
+}
+.btn:hover {
+	cursor: pointer;
+}
+.border {
+	border: 1px solid #aaa;
+}
+.border-rounded {
+	border: 1px solid #aaa;
+	border-radius: 0.5rem;
+}
+.mt-1 {
+	margin-top: 0.5rem;
+}
+.p-1 {
+	padding: 0.5rem;
+}
+.tab-bar{
+    display: flex;
+    height: 2rem;
+    background-color: #ddd;
+}
+.tab-bar button {
+    border: none;
+    outline: none;
+    background-color: inherit;
+    padding: 0 0.5rem;
+}
+.tab-bar button:hover {
+    background-color: #ccc;
+    cursor: pointer;
+}
+.tab-bar button.active {
+    background-color: #bbb;
+}
+.tab .tab-content {
+    margin-top: 1rem;
+}
+.d-none {
+	display: none;
+}

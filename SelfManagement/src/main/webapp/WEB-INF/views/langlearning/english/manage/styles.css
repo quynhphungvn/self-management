@@ -1,0 +1,72 @@
+#left-menu {
+    position: absolute;
+    width: 300px;
+    height: 100%;
+    background-color: #ccc;
+    top: 0;
+    left: -300px; 
+    z-index: 1;
+    transition: left 0.5s;
+    padding: 1rem;
+}
+#left-menu header{
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+#left-menu header a {
+    font-size: 2rem;
+    color: blue;
+}
+#left-menu header button {
+    background-color: inherit;
+    border: none;
+    font-size: 1.5rem;
+}
+#left-menu header button:hover {
+    color: orange;
+    cursor: pointer;
+}
+#left-menu nav {
+    margin-top: 1rem;
+}
+#left-menu nav a {
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem;
+    font-weight: bold;
+    color: palevioletred;
+}
+#left-menu nav a:hover {
+    background-color: white;
+    color: black;
+}
+#header {
+    height: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+}
+#header button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+}
+#header button:hover {
+    cursor: pointer;
+    color: orange;
+}
+#header img {
+    border-radius: 50%;
+}
+#header img:hover {
+    cursor: pointer;
+}
+#english-learning {
+	width: 80%;
+	margin: 1rem auto;
+}

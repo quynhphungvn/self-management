@@ -29,8 +29,9 @@
                 <li>
                     <h3>English learning</h3>
                     <ul>
-                        <li><a href="/ipa/ipa.html">IPA</a></li>
-                        <li><a href="/video/watching.html">Video Watching</a></li>
+                        <li><a href="/SelfManagement/langlearning/english/ipa/">IPA</a></li>
+                        <li><a href="/SelfManagement/langlearning/english/videolearning/">Video Learning</a></li>
+                        <li><a href="/SelfManagement/langlearning/english/manage/">Manage</a></li>
                         <li><a href="/document/reading.html">Document Reading</a></li>
                     </ul>
                 </li>
@@ -78,15 +79,19 @@
 			List<IPASymbol> consonant = new ArrayList<IPASymbol>();
 			List<IPASymbol> rColoredVowel = new ArrayList<IPASymbol>();
 			List<IPASymbol> diphthong = new ArrayList<IPASymbol>();
-			for (int i = 0; i < listIPASymbol.size(); i++) {
-				if (listIPASymbol.get(i).getIpaType().equals("vowel"))
-					vowel.add(listIPASymbol.get(i));
-				else if (listIPASymbol.get(i).getIpaType().equals("consonant"))
-					consonant.add(listIPASymbol.get(i));
-				else if (listIPASymbol.get(i).getIpaType().equals("r-colored-vowel"))
-					rColoredVowel.add(listIPASymbol.get(i));
+			for (int i = 0; i < listIPASymbol.size(); i++) {		
+				IPASymbol tempSymbol = listIPASymbol.get(i);			
+				if (tempSymbol.getIpaType().equals("vowel")){
+					vowel.add(tempSymbol);				
+				}
+				else if (tempSymbol.getIpaType().equals("consonant")){
+					consonant.add(tempSymbol);	
+				}
+				else if (tempSymbol.getIpaType().equals("r-colored-vowel")) {
+					rColoredVowel.add(tempSymbol);				
+				}
 				else {
-					diphthong.add(listIPASymbol.get(i));
+					diphthong.add(tempSymbol);					
 				}
 			}
 			%>
