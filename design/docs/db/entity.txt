@@ -1,35 +1,28 @@
 @startuml
-entity video_learning {
+entity video {
 *id: int 
 *title: varchar(100) 
 *sub: text
 *url: varchar(100) 
 *group_id: int 
 }
-entity group_video {
+entity video_group {
 *id: int 
 *name: varchar(30) 
 *user_id: int 
 }
 entity user {
 *id: int
-*fullname: varchar(100)
-*mobile: varchar(15)
-*email: varchar(50) 
 *username: varchar(100) 
-*password_hash: varchar(32) 
-*registered_at: DATETIME
-*last_login: DATETIME
-*avatar_url: varchar(100)
-*local_root_video_url: varchar(100)
+*password: varchar(32)
 }
-entity user_ipa_symbol {
+entity symbol_view_info {
 *id: int
 *user_id: int
 *ipa_symbol_id: int
 *view_count: int
 }
-entity user_video_learning {
+entity video_view_info {
 *id: int
 *user_id: int
 *video_learning_id: int
@@ -37,52 +30,51 @@ entity user_video_learning {
 }
 entity dictionary {
 *id: int 
-*word: varchar(20) 
+*word: varchar(25) 
 *phonetic: varchar(20)
 }
-entity user_word_known {
+entity word_known {
 *id: int 
 *word_id: int 
 *user_id: int 
 }
-entity ipa_symbol {
+entity symbol {
 *id: int 
-*symbol: varchar(2) 
-*video_guide_url: varchar(100)
-*image_guide_url: varchar(100)
+*symbol: varchar(10) 
 *example: varchar(20)
 *example_phonetic: varchar(20)
+*video_guide_url: varchar(100)
+*image_guide_url: varchar(100)
 *type: varchar(15)
 }
-user |o--o{ group_video
-user ||--o{ user_word_known
-user ||--|| user_ipa_symbol
-user ||--|| user_video_learning
-ipa_symbol ||--|| user_ipa_symbol
-dictionary ||--o{ user_word_known
-group_video ||--o{ video_learning
-video_learning ||--|| user_video_learning
+user |o--o{ video_group
+user ||--o{ word_known
+user ||--|| symbol_view_info
+user ||--|| video_view_info
+symbol ||--|| symbol_view_info
+dictionary ||--o{ word_known
+video_group ||--o{ video
+video ||--|| video_view_info
 note left of user
  id: not null auto_increment 
  username: not null unique
  password_hash: not null
 end note
-note left of video_learning
+note left of video
  id:not null auto_increment 
  group_id: not null
  title: not null
  url: not null
 end note
-note left of group_video
+note left of video_group
  id: not null auto_increment 
  name: not null
 end note
-note left of ipa_symbol
+note left of symbol
  id: not null auto_increment 
- group_id: not null
  symbol: not null unique
 end note
-note right of user_word_known
+note right of word_known
  id: not null auto_increment
  word_id: not null
  user_id: not null

@@ -1,0 +1,18 @@
+@startuml
+left to right direction
+actor user
+package videolearning {
+usecase "insert videos and groups" as u1
+usecase "showing videos and groups" as u2
+usecase "update videos and group" as u3
+usecase "watching video" as u4
+usecase "update new word" as u5
+usecase "lookup word" as u6
+}
+user --> u1
+user --> u2
+user --> u3
+user --> u4
+user --> u5
+user --> u6
+@enduml

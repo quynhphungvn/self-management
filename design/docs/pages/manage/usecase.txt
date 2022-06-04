@@ -1,0 +1,14 @@
+@startuml
+left to right direction
+actor user as u
+package manage-videolearning {
+usecase "Show page" as u1
+usecase "CRUD group" as u2
+usecase "Show videos in group" as u3
+usecase "CRUD video" as u4
+}
+u --> u1
+u --> u2
+u --> u3
+u --> u4
+@enduml
