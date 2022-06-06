@@ -1,0 +1,20 @@
+@startuml
+actor User as U
+participant Browser as B
+participant EnglishManageAPIController as EMC
+participant EnglishManageService as EMS
+participant EnglishManageMapper as EMM
+participant EnglishManageDAO as EMD
+database Database as DB
+U --> B : CRUD Group Video
+B --> EMC: Request CRUD Group Video
+EMC --> EMS: Call CRUD Service
+EMS --> EMM: Map Group data to Group model
+EMS --> EMD: Call CRUD by Group Model
+EMD --> DB: CRUD by Group Model
+DB --> EMD: Return Result CRUD
+EMD --> EMS: return Result CRUD
+EMS --> EMC: Return Result CRUD
+EMC --> B: Return Message of Result CRUD
+B --> U: Show page 
+@enduml

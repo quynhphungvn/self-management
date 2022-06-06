@@ -1,0 +1,22 @@
+@startuml
+actor User as U
+participant Browser as B
+participant JSPPage as JSP
+participant EnglishManageController as EMC
+participant EnglishManageService as EMS
+participant EnglishManageMapper as EMM
+participant EnglishManageDAO as EMD
+database Database as DB
+U --> B : Type URL and Enter
+B --> EMC: Request Manage Page
+EMC --> EMS: Get All Group
+EMS --> EMD: Get All Group
+EMD --> DB: Get All Group
+DB --> EMD: Return All Group Video
+EMD --> EMM: Map to Group DTO
+EMM --> EMS: Return All Group DTO
+EMS --> EMC: Return All Group DTO
+EMC --> JSP: Dispatch to JSP
+JSP --> B: return html
+B --> U: Show page 
+@enduml

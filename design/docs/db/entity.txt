@@ -4,7 +4,9 @@ entity video {
 *title: varchar(100) 
 *sub: text
 *url: varchar(100) 
-*group_id: int 
+*group_id: int
+*user_id: int
+*view_count: int 
 }
 entity video_group {
 *id: int 
@@ -19,13 +21,7 @@ entity user {
 entity symbol_view_info {
 *id: int
 *user_id: int
-*ipa_symbol_id: int
-*view_count: int
-}
-entity video_view_info {
-*id: int
-*user_id: int
-*video_learning_id: int
+*symbol_id: int
 *view_count: int
 }
 entity dictionary {
@@ -47,20 +43,19 @@ entity symbol {
 *image_guide_url: varchar(100)
 *type: varchar(15)
 }
-user |o--o{ video_group
+user ||--o{ video_group
 user ||--o{ word_known
 user ||--|| symbol_view_info
-user ||--|| video_view_info
+user ||--o{ video
 symbol ||--|| symbol_view_info
 dictionary ||--o{ word_known
 video_group ||--o{ video
-video ||--|| video_view_info
 note left of user
  id: not null auto_increment 
  username: not null unique
  password_hash: not null
 end note
-note left of video
+note right of video
  id:not null auto_increment 
  group_id: not null
  title: not null
@@ -70,7 +65,7 @@ note left of video_group
  id: not null auto_increment 
  name: not null
 end note
-note left of symbol
+note right of symbol
  id: not null auto_increment 
  symbol: not null unique
 end note

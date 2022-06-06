@@ -1,0 +1,20 @@
+@startuml
+actor User as U
+participant Browser as B
+participant EnglishManageAPIController as EMC
+participant EnglishManageService as EMS
+participant EnglishManageMapper as EMM
+participant EnglishManageDAO as EMD
+database Database as DB
+U --> B : click choose group video
+B --> EMC: Request All video of group video
+EMC --> EMS: Get all video by group id
+EMS --> EMD: Get all video by group id
+EMD --> DB: Get all video by group id
+DB --> EMD: Return Result
+EMD -> EMM: Map videos to dto
+EMM --> EMS: return videos dto
+EMS --> EMC: Return videos dto
+EMC --> B: Return videos dto
+B --> U: Show all video of group
+@enduml
