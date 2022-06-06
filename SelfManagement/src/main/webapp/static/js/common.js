@@ -26,7 +26,7 @@ var Status = {
 var apiURL = {
 	ipaSymbol: {
 		getById: {
-			url: "/SelfManagement/langlearning/english/api/ipa-symbol/",
+			url: "/SelfManagement/langlearning/english/api/symbol/",
 			method: "GET",
 			headers: [{ name: "charset", value: "UTF-8" }]
 		}

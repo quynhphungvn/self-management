@@ -5,22 +5,22 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
-  	<servlet-name>IPAController</servlet-name>
-  	<display-name>IPAController</display-name>
+  	<servlet-name>SymbolController</servlet-name>
+  	<display-name>SymbolController</display-name>
   	<description></description>
-  	<servlet-class>quynh.java.sm.langlearning.english.ipa.controller.IPAController</servlet-class>
+  	<servlet-class>quynh.java.sm.langlearning.english.symbol.controller.SymbolController</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>IPAAPIController</servlet-name>
-  	<display-name>IPAAPIController</display-name>
+  	<servlet-name>SymbolAPIController</servlet-name>
+  	<display-name>SymbolAPIController</display-name>
   	<description></description>
-  	<servlet-class>quynh.java.sm.langlearning.english.ipa.controller.IPAAPIController</servlet-class>
+  	<servlet-class>quynh.java.sm.langlearning.english.symbol.controller.SymbolAPIController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>VideoWatchingController</servlet-name>
   	<display-name>VideoWatchingController</display-name>
   	<description></description>
-  	<servlet-class>quynh.java.sm.langlearning.english.videolearning.controller.VideoLearningController</servlet-class>
+  	<servlet-class>quynh.java.sm.langlearning.english.video.controller.VideoController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>EnglishManage</servlet-name>
@@ -32,19 +32,19 @@
   	<servlet-name>VideoGroup</servlet-name>
   	<display-name>VideoGroup</display-name>
   	<description></description>
-  	<servlet-class>quynh.java.sm.langlearning.english.videolearning.controller.VideoGroup</servlet-class>
+  	<servlet-class>quynh.java.sm.langlearning.english.video.controller.VideoGroup</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>IPAController</servlet-name>
-  	<url-pattern>/langlearning/english/ipa-symbol/</url-pattern>
+  	<servlet-name>SymbolController</servlet-name>
+  	<url-pattern>/langlearning/english/symbol/</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>IPAAPIController</servlet-name>
-  	<url-pattern>/langlearning/english/api/ipa-symbol/</url-pattern>
+  	<servlet-name>SymbolAPIController</servlet-name>
+  	<url-pattern>/langlearning/english/api/symbol/</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>VideoWatchingController</servlet-name>
-  	<url-pattern>/langlearning/english/videolearning/</url-pattern>
+  	<url-pattern>/langlearning/english/video/</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>EnglishManage</servlet-name>
