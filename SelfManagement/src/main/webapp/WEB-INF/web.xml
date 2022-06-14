@@ -8,31 +8,43 @@
   	<servlet-name>SymbolController</servlet-name>
   	<display-name>SymbolController</display-name>
   	<description></description>
-  	<servlet-class>quynh.java.sm.langlearning.english.symbol.controller.SymbolController</servlet-class>
+  	<servlet-class>quynh.java.sm.langlearning.english.controller.SymbolController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>SymbolAPIController</servlet-name>
   	<display-name>SymbolAPIController</display-name>
   	<description></description>
-  	<servlet-class>quynh.java.sm.langlearning.english.symbol.controller.SymbolAPIController</servlet-class>
+  	<servlet-class>quynh.java.sm.langlearning.english.controller.SymbolAPIController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>VideoWatchingController</servlet-name>
   	<display-name>VideoWatchingController</display-name>
   	<description></description>
-  	<servlet-class>quynh.java.sm.langlearning.english.video.controller.VideoController</servlet-class>
+  	<servlet-class>quynh.java.sm.langlearning.english.controller.VideoController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>EnglishManage</servlet-name>
   	<display-name>EnglishManage</display-name>
   	<description></description>
-  	<servlet-class>quynh.java.sm.langlearning.english.manage.controller.EnglishManage</servlet-class>
+  	<servlet-class>quynh.java.sm.langlearning.english.controller.EnglishManageController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>VideoGroup</servlet-name>
   	<display-name>VideoGroup</display-name>
   	<description></description>
-  	<servlet-class>quynh.java.sm.langlearning.english.video.controller.VideoGroup</servlet-class>
+  	<servlet-class>quynh.java.sm.langlearning.english.controller.VideoGroupAPIController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>EnglishManageAPIController</servlet-name>
+  	<display-name>EnglishManageAPIController</display-name>
+  	<description></description>
+  	<servlet-class>quynh.java.sm.langlearning.english.controller.EnglishManageAPIController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>VideoAPIController</servlet-name>
+  	<display-name>VideoAPIController</display-name>
+  	<description></description>
+  	<servlet-class>quynh.java.sm.langlearning.english.controller.VideoAPIController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>SymbolController</servlet-name>
@@ -40,7 +52,7 @@
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>SymbolAPIController</servlet-name>
-  	<url-pattern>/langlearning/english/api/symbol/</url-pattern>
+  	<url-pattern>/langlearning/english/symbol/api/</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>VideoWatchingController</servlet-name>
@@ -52,6 +64,14 @@
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>VideoGroup</servlet-name>
-  	<url-pattern>/langlearning/english/api/video-group/</url-pattern>
+  	<url-pattern>/langlearning/english/video-group/api/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EnglishManageAPIController</servlet-name>
+  	<url-pattern>/langlearning/english/manage/api/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>VideoAPIController</servlet-name>
+  	<url-pattern>/langlearning/english/video/api/</url-pattern>
   </servlet-mapping>
 </web-app>

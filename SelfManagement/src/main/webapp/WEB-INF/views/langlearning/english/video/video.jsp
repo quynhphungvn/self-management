@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.List, java.util.ArrayList,quynh.java.sm.langlearning.english.video.model.*"%>
+<%@ page import="java.util.List, java.util.ArrayList,quynh.java.sm.langlearning.english.model.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +8,13 @@
 <title>Insert title here</title>
 <style><%@include file="./styles.css"%></style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/SelfManagement/static/utils/styles.css">
+<script src="/SelfManagement/static/utils/scripts.js"></script>
 </head>
 <body>
+	<%
+		List<VideoGroup> listVideoGroup = (List<VideoGroup>) request.getAttribute("listVideoGroup");
+	%>
 	<header id="header">
         <button onclick="showLeftMenu()"><i class="fa fa-bars"></i></button>   
         <img src="/SelfManagement/static/images/tien.png" width="30px" height="30px"/>
@@ -47,31 +52,17 @@
                 <button class="tab-links" onclick="showBonusInfo(event, 'video-sub')">Subtitle</button>
             </div>
             <div id="video-list" class="tab-content">
-                <select>
-                    <option>Group 1</option>
-                    <option>Group 2</option>
+                <select id="select-video-group" onchange="getVideosOfGroup()">
+                	<option value="-1">Choose Group...</option>
+                    <%
+                    	for (VideoGroup vg : listVideoGroup) {
+                    		out.print("<option value='"+vg.getId()+"'>"+vg.getName()+"</option>");
+                    	}
+                    %>
                 </select>
-                <ul>
+                <ul id="list-video-of-group">
                     <li class="active"><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    <li><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
+                    
                 </ul>
             </div>
             <div id="video-sub" class="tab-content">
@@ -99,7 +90,7 @@
                     <li>
                         <time>0:10</time>
                         <div><span>Greg,</span><span> were</span> <span>you</span> smoking cigarettes?
-                            - No, Dad. He's lying. There's no doubt about that.</span>
+                            - No, Dad. He's lying. There's no doubt about <span>that.</span>
                         </div>
                     </li>
                     <li>

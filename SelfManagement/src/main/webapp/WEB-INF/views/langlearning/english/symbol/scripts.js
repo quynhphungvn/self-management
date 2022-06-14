@@ -23,15 +23,14 @@ function chooseSymbol(evt, id) {
 	}
 	evt.currentTarget.className += " active";
 	const requestInfo = {
-		url: apiURL.ipaSymbol.getById.url + "?id=" + id,
-		method: apiURL.ipaSymbol.getById.method,
-		headers: apiURL.ipaSymbol.getById.headers,
+		url: apiURL.symbol.getById.url + "?id=" + id,
+		method: apiURL.symbol.getById.method,
+		headers: apiURL.symbol.getById.headers,
 		data: null
 	};
 	ajaxCall(requestInfo, symbolShowContent, null);
 }
 function symbolShowContent(symbolText) {
-	console.log(symbolText);
 	let symbol = JSON.parse(symbolText);	
 	let iframeVideoEl = document.getElementById("ipa-player-iframe");
 	let examWordEl = document.getElementById("ipa-exam-word");

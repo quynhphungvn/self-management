@@ -1,43 +1,39 @@
 var Action = {
-	ADD_POST: "ADD_POST",
-	UPDATE_POST: "UPDATE_POST",
-	DELETE_POST: "DELETE_POST",
-	GET_ALL_POST_INFO: "GET_ALL_POST_INFO",
-	GET_POST_CONTENT_BY_ID: "GET_POST_CONTENT_BY_ID",
-	ADD_NOTE: "ADD_NOTE",
-	DELETE_NOTE: "DELETE_NOTE",
-	GET_ALL_WORD_KNOWN: "GET_ALL_WORD_KNOWN",
-	ADD_WORD_TO_WORD_KNOWN: "ADD_WORD_TO_WORD_KNOWN"
+	GET: "GET",
+	GETS: "GETS",
+	ADD: "ADD",
+	ADDS: "ADDS",
+	DELETE: "DELETE",
+	DELETES: "DELETES",
+	UPDATE: "UPDATE",
+	UPDATES: "UPDATES",
+	ADD_VIDEO_GROUP: "ADD_VIDEO_GROUP",
+	DELETE_VIDEO_GROUP: "DELETE_VIDEO_GROUP"
 }
-var Status = {
+var MessageStatus = {
+	SUCCESS: "SUCCESS",
+	FAIL: "FAIL",
+}
+var ErrorStatus = {
 	PARAM_INVALID: "PARAM_INVALID",
-	GET_SUCCESS: "GET_SUCCESS",
-	GET_FAIL: "GET_FAIL",
-	ADD_SUCCESS: "ADD_SUCCESS",
-	UPDATE_SUCCESS: "UPDATE_SUCCESS",
-	DELETE_SUCCESS: "DELETE_SUCCESS",
 	RECORD_DUPLICATE: "RECORD_DUPLICATE",
 	RECORD_NOT_EXIST: "RECORD_NOT_EXIST",
-	ADD_FAIL: "ADD_FAIL",
-	UPDATE_FAIL: "UPDATE_FAIL",
-	DELETE_FAIL: "DELETE_FAIL"
 }
-
 var apiURL = {
-	ipaSymbol: {
+	symbol: {
 		getById: {
-			url: "/SelfManagement/langlearning/english/api/symbol/",
+			url: "/SelfManagement/langlearning/english/symbol/api/",
 			method: "GET",
 			headers: [{ name: "charset", value: "UTF-8" }]
 		}
 	},
-	videoLearn: {
-		getByGroupId: {
-			url: "/ss/englearn/api/video-learns/",
+	video: {
+		getVideosByGroupId: {
+			url: "/SelfManagement/langlearning/english/video/api/",
 			method: "GET",
 			headers: [{ name: "charset", value: "UTF-8" }]
 		},
-		updateVideoById: {
+		updateById: {
 			action: "updatevideo",
 			url: "/ss/englearn/api/video-learns/",
 			method: "POST",
@@ -46,9 +42,8 @@ var apiURL = {
 				{ name: "content-type", value: "application/x-www-form-urlencoded" }
 			]
 		},
-		addVideo: {
-			action: "addvideo",
-			url: "/ss/englearn/api/video-learns/",
+		add: {
+			url: "/SelfManagement/langlearning/english/video/api/",
 			method: "POST",
 			headers: [
 				{ name: "charset", value: "UTF-8" },
@@ -56,9 +51,17 @@ var apiURL = {
 			]
 		}
 	},
-	videoLearnGroup: {
+	videoGroup: {
 		addGroup: {
-			url: "/ss/englearn/api/video-learn-groups/",
+			url: "/SelfManagement/langlearning/english/video-group/api/",
+			method: "POST",
+			headers: [
+				{ name: "charset", value: "UTF-8" },
+				{ name: "content-type", value: "application/x-www-form-urlencoded" }
+			]
+		},
+		deleteGroup: {
+			url: "/SelfManagement/langlearning/english/video-group/api/",
 			method: "POST",
 			headers: [
 				{ name: "charset", value: "UTF-8" },
@@ -167,11 +170,9 @@ function removeUnexpectChar(word) {
 	return result;
 }
 function ajaxCall(requestInfo, callback, callbackParam) {
-	console.time();
 	const xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			console.timeEnd();
 			if (callbackParam == null)
 				callback(this.responseText);
 			else

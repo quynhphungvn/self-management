@@ -1,16 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List, java.util.ArrayList,quynh.java.sm.langlearning.english.model.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>English Manage</title>
 <style><%@include file="./styles.css"%></style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/SelfManagement/static/utils/styles.css">
 <script src="/SelfManagement/static/utils/scripts.js"></script>
 </head>
 <body>
+	<%
+		List<VideoGroup> listVideoGroup = (List<VideoGroup>)request.getAttribute("listVideoGroup");
+	%>
 	<header id="header">
         <button onclick="showLeftMenu()"><i class="fa fa-bars"></i></button>   
         <img src="/SelfManagement/static/images/tien.png" width="30px" height="30px"/>
@@ -26,8 +30,8 @@
                 <li>
                     <h3>English learning</h3>
                     <ul>
-                        <li><a href="/SelfManagement/langlearning/english/ipa/">IPA</a></li>
-                        <li><a href="/SelfManagement/langlearning/english/videolearning/">Video Learning</a></li>
+                        <li><a href="/SelfManagement/langlearning/english/symbol/">IPA</a></li>
+                        <li><a href="/SelfManagement/langlearning/english/video/">Video Learning</a></li>
                         <li><a href="/SelfManagement/langlearning/english/manage/">Manage</a></li>
                         <li><a href="/document/reading.html">Document Reading</a></li>
                     </ul>
@@ -48,49 +52,51 @@
 				<div id="ipa-tab" class="tab-content">ipa</div>
 				<div id="video-tab" class="tab-content d-none">
 					<div class="border-rounded p-1">
-						<div>
-							<select>
-								<option>Group 1</option>
-								<option>Group 2</option>
+						<div class="d-flex">
+							<select id="gform-select-group" onchange="chooseVideoGroupGForm(this)">
+								<option value="-1">Choose Group... </option>
+								<%
+									for (VideoGroup v : listVideoGroup) {
+										out.print("<option value='"+ v.getId() +"'>" + v.getName() + "</option>");
+									}
+								%>
 							</select>
-							<div>
-								<input type="text" />
-								<button class="btn">+</button>
-								<button class="btn">-</button>
+							<div class="ml-1">
+								<input id="input-video-group" type="text" />
+								<button id="add-group-btn" class="btn" onclick="addVideoGroupByName()">+</button>
+								<button id="del-group-btn" class="btn" onclick="deleteVideoGroupByName()">-</button>
 							</div>
 						</div>
-
-						<ul>
-							<li>video 1 of group</li>
-							<li>video 1 of group</li>
-							<li>video 1 of group</li>
-							<li>video 1 of group</li>
-							<li>video 1 of group</li>
-							<li>video 1 of group</li>
+						<ul id="videos-by-group">
+							
 						</ul>
 					</div>
 					<div class="border-rounded mt-1 p-1">
-						<div>
-							<label>id</label> <input type="text" />
+						<div class="form-group">
+							<label>title</label> 
+							<input type="text" id="vform-title"/>
 						</div>
-						<div>
-							<label>title</label> <input type="text" />
+						<div class="form-group">
+							<label>url</label> 
+							<input type="text" id="vform-url"/>
 						</div>
-						<div>
-							<label>url</label> <input type="text" />
-						</div>
-						<div>
-							<label>group</label> <select>
-								<option>Group 1</option>
-								<option>Group 2</option>
+						<div class="form-group">
+							<label>group</label> 
+							<select id="vform-select-group">	
+								<option value="-1">---</option>
+								<%
+									for (VideoGroup v : listVideoGroup) {
+										out.print("<option value='"+ v.getId() +"'>" + v.getName() + "</option>");
+									}
+								%>		
 							</select>
 						</div>
-						<div>
+						<div class="form-group">
 							<label>subtitle</label>
-							<textarea rows="10" cols="40"></textarea>
+							<textarea rows="10" cols="40" id="vform-subtitle"></textarea>
 						</div>
 						<div>
-							<button class="btn">Add</button>
+							<button class="btn" onclick="addVideo()">Add</button>
 							<button class="btn">Update</button>
 							<button class="btn">Delete</button>
 							<button class="btn">Clear</button>
@@ -100,6 +106,7 @@
 			</div>
 		</section>
 	</main>
+	<script src="/SelfManagement/static/js/common.js"></script>
 	<script><%@include file="./scripts.js"%></script>
 </body>
 </html>

@@ -18,6 +18,9 @@ textarea {
 	outline: none;
 	padding: 0.25rem 0.5rem;
 }
+input, select, textarea {
+	border: 1px solid #bbb;
+}
 .btn {
 	padding: 0.25rem 0.5rem;
 }
@@ -34,8 +37,14 @@ textarea {
 .mt-1 {
 	margin-top: 0.5rem;
 }
+.ml-1 {
+	margin-left: 0.5rem;
+}
 .p-1 {
 	padding: 0.5rem;
+}
+.pl-1 {
+	padding-left: 0.5rem;
 }
 .tab-bar{
     display: flex;
@@ -60,4 +69,16 @@ textarea {
 }
 .d-none {
 	display: none;
+}
+.d-flex {
+	display: flex;
+}
+.form-group {
+	display: flex;
+	flex-direction: column;
+	padding: 0.25rem 0;
+	align-items: flex-start;
+}
+.form-group label {
+	font-weight: bold;
 }
