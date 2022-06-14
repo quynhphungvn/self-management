@@ -1,0 +1,19 @@
+@startuml
+class EnglishManageController {
+#doGet()
+-HttpServletRequest prepareDataForManagePage(request)
+-void forwardJsp(requestPreparedData, response)
+#doPost()
+}
+class VideoGroup {
+-int id
+-int userId
+-String name
+}
+class VideoGroupService {
++List<VideoGroup> getVideoGroupsByUserId(int userId)
+}
+class VideoGroupDAO {
++ List<VideoGroup> getVideoGroupsByUserId(int userId)
+}
+@enduml

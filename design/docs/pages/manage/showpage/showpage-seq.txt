@@ -1,0 +1,17 @@
+@startuml
+actor User as U
+participant Browser as B
+participant EnglishManageController as EMC
+participant VideoGroupService as VGS
+participant VideoGroupDAO as VGD
+U --> B : enter url
+B --> EMC: doGet()
+EMC --> EMC: prepareDataForManagePage(request)
+EMC --> VGS: getVideoGroupsByUserId(int userId) 
+VGS --> VGD: getVideoGroupsByUserId(int userId)
+VGD --> VGS: return List<VideoGroup>
+VGS --> EMC: return List<VideoGroup> 
+EMC --> EMC: forwardJsp(requestDataPrepared, response) 
+EMC --> B: return html
+B --> U: show page
+@enduml

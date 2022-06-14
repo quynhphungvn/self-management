@@ -1,0 +1,28 @@
+@startuml
+actor User as U
+participant Browser as B
+participant VideoGroupAPIController as VGAC
+participant VideoGroupService as VGS
+participant VideoGroupDAO as VGD
+U --> B : enter group name
+B --> B: addVideoGroupByName()
+B --> B: get Input, check existed
+B --> VGAC: request Add
+VGAC --> VGS: SMMessage addVideoGroup(VideoGroup)
+VGS --> VGD: VideoGroup getVideoGroupByName(VideoGroup)
+VGD --> VGS: return VideoGroup
+alt not exist
+VGS --> VGD: int addVideoGroup(VideoGroup)
+VGD --> VGS: return add result
+VGS --> VGAC: return add result
+else existed
+VGS --> VGAC: return 0
+end
+VGAC --> B: return SMMessage Json
+alt successful case
+ B --> B: updateGuiAfterAddVideoGroup(response, groupName)
+ B --> B: update selects El, clear Input
+else failure
+ B --> B: showMessageAddVideoGroupFail()
+end
+@enduml

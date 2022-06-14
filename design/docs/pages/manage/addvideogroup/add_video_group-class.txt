@@ -1,0 +1,28 @@
+@startuml
+class VideoGroupAPIController {
+#doGet()
+#doPost()
+SMMessage addVideoGroup(VideoGroup)
+}
+class VideoGroup {
+-int id
+-int userId
+-String name
+}
+class SMMessage {
+-String status
+-Object data
+}
+class VideoGroupService {
++int addVideoGroup(VideoGroup)
+}
+class VideoGroupDAO {
++VideoGroup getVideoGroupByName(VideoGroup)
++int addVideoGroup(VideoGroup)
+}
+class Browser {
++addVideoGroupByName()
++updateGuiAfterAddVideoGroup(response, groupName)
++ShowMessageAddVideoGroupFail()
+}
+@enduml

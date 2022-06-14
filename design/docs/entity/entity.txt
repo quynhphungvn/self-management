@@ -2,7 +2,7 @@
 entity video {
 *id: int 
 *title: varchar(100) 
-*sub: text
+*subtitle: text
 *url: varchar(100) 
 *group_id: int
 *user_id: int
@@ -63,7 +63,7 @@ note right of video
 end note
 note left of video_group
  id: not null auto_increment 
- name: not null
+ name: not null unique
 end note
 note right of symbol
  id: not null auto_increment 
