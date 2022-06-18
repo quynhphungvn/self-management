@@ -13,7 +13,7 @@ import quynh.java.sm.support.db.util.JDBCConnect;
 
 public class VideoGroupDAO {
 	
-	public List<VideoGroup> getVideoGroupsByUserId(int userId) {
+	public List<VideoGroup> getGroupsByUserId(int userId) {
 		Connection conn = null;
 		List<VideoGroup> listVideoGroup = new ArrayList<VideoGroup>();
 		try {
@@ -42,7 +42,7 @@ public class VideoGroupDAO {
 		}
 		return listVideoGroup;
 	}
-	public VideoGroup getVideoGroupByName(int userId, String groupName) {
+	public VideoGroup getGroupByName(int userId, String groupName) {
 		Connection conn = null;
 		VideoGroup videoGroup = null;
 		try {
@@ -71,7 +71,7 @@ public class VideoGroupDAO {
 		}
 		return videoGroup;
 	}
-	public int addVideoGroup(int userId, String groupName) {
+	public int addGroup(int userId, String groupName) {
 		Connection conn = null;
 		int result = 0;
 		try {
@@ -94,7 +94,7 @@ public class VideoGroupDAO {
 		}
 		return result;
 	}
-	public int deleteVideoGroupByName(int userId, String groupName) {
+	public int deleteGroupByName(int userId, String groupName) {
 		Connection conn = null;
 		int result = 0;
 		PreparedStatement pstm = null;
@@ -115,18 +115,21 @@ public class VideoGroupDAO {
 		}
 		return result;
 	}
-	public int getGroupIdByGroupName(Connection conn, String groupName) {
+	public int getGroupIdByGroupName(String groupName, int userId) {
+		Connection conn = null;
 		int groupId = 0;
-		String sql = "select id from video_group where name=?";
+		String sql = "select id from video_group where name=? and user_id=?";
 		PreparedStatement pstm = null;
 		try {
+			conn = JDBCConnect.getMySQLConnection();
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, groupName);
+			pstm.setInt(2, userId);
 			ResultSet rs = pstm.executeQuery();
 			if (rs.next()) {
 				groupId = rs.getInt(1);
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 			try {
 				pstm.close();

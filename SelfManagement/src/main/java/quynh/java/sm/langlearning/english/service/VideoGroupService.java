@@ -11,22 +11,28 @@ public class VideoGroupService {
 	private VideoDAO videoDAO = new VideoDAO();
 	
 	public List<VideoGroup> getVideoGroupsByUserId(int userId) {
-		return videoGroupDAO.getVideoGroupsByUserId(userId);
+		return videoGroupDAO.getGroupsByUserId(userId);
 	}
-	public int addVideoGroup(VideoGroup videoGroup) {
-		VideoGroup v = videoGroupDAO.getVideoGroupByName(videoGroup.getUserId(), videoGroup.getName());
+	public VideoGroup addVideoGroup(VideoGroup videoGroup) {
+		VideoGroup group = null;
+		VideoGroup v = videoGroupDAO.getGroupByName(videoGroup.getUserId(), videoGroup.getName());
 		if (v != null)
-			return 0;
-		else
-			return videoGroupDAO.addVideoGroup(videoGroup.getUserId(), videoGroup.getName());
+			return null;
+		else {
+			int resultAdd = videoGroupDAO.addGroup(videoGroup.getUserId(), videoGroup.getName());
+			if (resultAdd == 1) {
+				group = videoGroupDAO.getGroupByName(videoGroup.getUserId(), videoGroup.getName());
+			}				
+		}
+		return group;
 	}
 	public int deleteVideoGroup(VideoGroup videoGroup) {
-		VideoGroup v = videoGroupDAO.getVideoGroupByName(videoGroup.getUserId(), videoGroup.getName());
+		VideoGroup v = videoGroupDAO.getGroupByName(videoGroup.getUserId(), videoGroup.getName());
 		int result = 0;
 		if (v != null)
 		{
 			videoDAO.deleteVideosByGroupId(v.getId());
-			result = videoGroupDAO.deleteVideoGroupByName(videoGroup.getUserId(), videoGroup.getName());
+			result = videoGroupDAO.deleteGroupByName(videoGroup.getUserId(), videoGroup.getName());
 		}
 		return result;
 	}

@@ -10,7 +10,12 @@ public enum SMAction {
 	UPDATE,
 	UPDATES,
 	ADD_VIDEO_GROUP,
-	DELETE_VIDEO_GROUP
+	DELETE_VIDEO_GROUP,
+	GET_VIDEOS_BY_GROUP_ID,
+	ADD_VIDEO,
+	GET_VIDEO_BY_ID,
+	UPDATE_VIDEO,
+	DELETE_VIDEO
 	;
 	public String getStatus() {
 		return this.name();

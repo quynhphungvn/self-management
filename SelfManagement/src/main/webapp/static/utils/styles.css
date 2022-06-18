@@ -82,3 +82,20 @@ input, select, textarea {
 .form-group label {
 	font-weight: bold;
 }
+.list-items {
+	padding: 1rem;
+	background-color: #eee;
+}
+.list-items .item {
+	background-color: #fff;
+	display: block;
+	padding: 0.5rem;
+	border: 1px solid #aaa;
+}
+.list-items .item:hover {
+	cursor: pointer;
+	background-color: #aaa;
+}
+.list-items .item.active {
+	background-color: #aaa;
+}

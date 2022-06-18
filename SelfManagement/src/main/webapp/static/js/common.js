@@ -8,7 +8,13 @@ var Action = {
 	UPDATE: "UPDATE",
 	UPDATES: "UPDATES",
 	ADD_VIDEO_GROUP: "ADD_VIDEO_GROUP",
-	DELETE_VIDEO_GROUP: "DELETE_VIDEO_GROUP"
+	DELETE_VIDEO_GROUP: "DELETE_VIDEO_GROUP",
+	GET_VIDEOS_BY_GROUP_ID: "GET_VIDEOS_BY_GROUP_ID",
+	ADD_VIDEO: "ADD_VIDEO",
+	GET_VIDEO_BY_ID: "GET_VIDEO_INFO_BY_ID",
+	UPDATE_VIDEO: "UPDATE_VIDEO",
+	DELETE_VIDEO: "DELETE_VIDEO"
+	
 }
 var MessageStatus = {
 	SUCCESS: "SUCCESS",
@@ -33,9 +39,13 @@ var apiURL = {
 			method: "GET",
 			headers: [{ name: "charset", value: "UTF-8" }]
 		},
-		updateById: {
-			action: "updatevideo",
-			url: "/ss/englearn/api/video-learns/",
+		getVideoById: {
+			url: "/SelfManagement/langlearning/english/video/api/",
+			method: "GET",
+			headers: [{ name: "charset", value: "UTF-8" }]
+		},
+		update: {
+			url: "/SelfManagement/langlearning/english/video/api/",
 			method: "POST",
 			headers: [
 				{ name: "charset", value: "UTF-8" },
@@ -43,6 +53,14 @@ var apiURL = {
 			]
 		},
 		add: {
+			url: "/SelfManagement/langlearning/english/video/api/",
+			method: "POST",
+			headers: [
+				{ name: "charset", value: "UTF-8" },
+				{ name: "content-type", value: "application/x-www-form-urlencoded" }
+			]
+		},
+		delete: {
 			url: "/SelfManagement/langlearning/english/video/api/",
 			method: "POST",
 			headers: [

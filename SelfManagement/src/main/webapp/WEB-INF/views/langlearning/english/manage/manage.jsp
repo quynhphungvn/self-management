@@ -63,15 +63,20 @@
 							</select>
 							<div class="ml-1">
 								<input id="input-video-group" type="text" />
-								<button id="add-group-btn" class="btn" onclick="addVideoGroupByName()">+</button>
-								<button id="del-group-btn" class="btn" onclick="deleteVideoGroupByName()">-</button>
+								<button class="btn" onclick="addVideoGroupByName()">+</button>
+								<button class="btn" onclick="deleteVideoGroupByName()">-</button>
+								<button class="btn" onclick="clearGForm()">Clear</button>
 							</div>
 						</div>
-						<ul id="videos-by-group">
+						<ul id="videos-by-group" class="list-items mt-1">
 							
 						</ul>
 					</div>
 					<div class="border-rounded mt-1 p-1">
+						<div class="form-group">
+							<label>id</label> 
+							<input type="text" id="vform-id" disabled/>
+						</div>
 						<div class="form-group">
 							<label>title</label> 
 							<input type="text" id="vform-title"/>
@@ -96,10 +101,10 @@
 							<textarea rows="10" cols="40" id="vform-subtitle"></textarea>
 						</div>
 						<div>
-							<button class="btn" onclick="addVideo()">Add</button>
-							<button class="btn">Update</button>
-							<button class="btn">Delete</button>
-							<button class="btn">Clear</button>
+							<button id="btn-add-video" class="btn" onclick="addVideo()">Add</button>
+							<button id="btn-update-video" class="btn" onclick="updateVideo()">Update</button>
+							<button id="btn-delete-video" class="btn" onclick="deleteVideo()">Delete</button>
+							<button class="btn" onclick="clearVForm()">Clear</button>
 						</div>
 					</div>
 				</div>
