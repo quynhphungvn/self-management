@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 import quynh.java.sm.support.db.util.JDBCConnect;
 
-public class DictionaryDB {
+public class WordDB {
 	public List<String> readFile() {
 		String file ="src/main/resources/engwords.txt";	     
 	    ArrayList<String> wordList = new ArrayList<String>(); 
@@ -30,13 +30,13 @@ public class DictionaryDB {
 	      }
 	    return wordList;
 	}
-	public void initDictionaryTable() {
+	public void initWordTable() {
 		List<String> words = this.readFile();
 		Connection conn = null;
 		try {
 			conn = JDBCConnect.getMySQLConnection();
-			String sql = "insert into dictionary (word) values (?);";
-			String sqlCheckExist = "select id from dictionary where word=?";
+			String sql = "insert into word (word, user_add) values (?, false);";
+			String sqlCheckExist = "select id from word where word=?";
 			PreparedStatement pstm = conn.prepareStatement(sql);
 			PreparedStatement pstmCheckExist = conn.prepareStatement(sqlCheckExist);
 			for (String s: words) {
@@ -63,7 +63,7 @@ public class DictionaryDB {
 		}
 	}
 	public static void main(String[] args) {
-		DictionaryDB ddb = new DictionaryDB();
-		ddb.initDictionaryTable();
+		WordDB ddb = new WordDB();
+		ddb.initWordTable();
 	}
 }

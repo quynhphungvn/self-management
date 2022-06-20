@@ -15,7 +15,10 @@ public enum SMAction {
 	ADD_VIDEO,
 	GET_VIDEO_BY_ID,
 	UPDATE_VIDEO,
-	DELETE_VIDEO
+	DELETE_VIDEO,
+	GET_WORDKNOWNS,
+	ADD_WORD_TO_WORD_KNOWN,
+	UPDATE_VIDEO_VIEW_COUNT
 	;
 	public String getStatus() {
 		return this.name();

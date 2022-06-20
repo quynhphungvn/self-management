@@ -42,9 +42,7 @@
     </aside>
     <main>
         <section id="player">
-            <video width="100%"controls>
-                <source src="" type="video/webm" id="video-src">
-            </video>              
+           <iframe width="560" height="315" src="https://www.youtube.com/embed/7bRfgy25cNA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>             
         </section>
         <section id="bonus-info">
             <div class="tab">
@@ -60,48 +58,26 @@
                     	}
                     %>
                 </select>
-                <ul id="list-video-of-group">
-                    <li class="active"><span>Video 1</span><span><i class="fa fa-eye"></i> 10</span></li>
-                    
+                <ul id="videos-of-group">
+                 
                 </ul>
             </div>
             <div id="video-sub" class="tab-content">
                 <div class="sub-menu">
                     <div>
-                        <input type="text"/>
-                        <button class="btn">+</button>
-                        <button class="btn">-</button>                      
+                        <input type="text" id="input-lookup"/>
+                        <button class="btn" onclick="addWordToWordKnown()">+</button>
+                        <button class="btn" onclick="removeWordFromWordKnown()">-</button>                      
                     </div>
                     <div>
-                        <a href="#">Goog</a>
-                        <a href="#">Camb</a>
-                        <a href="#">Youg</a>
-                        <a href="#">Tratu</a>                      
+                        <a id="link-google" target="_blank" href="#">Goog</a>
+                        <a id="link-cambridge" target="_blank" href="#">Camb</a>
+                        <a id="link-youglish" target="_blank" href="#">Youg</a>
+                        <a id="link-tratu" target="_blank" href="#">Tratu</a>                      
                     </div>
                 </div>
-                <ul class="sub-list">
-                    <li class="active">
-                        <time>0:00</time>
-                        <div>
-                            <span>Mom,</span><span style="background-color: #aaa;">Dad,</span><span>I</span> found cigarettes
-                            in Greg's jacket.</span>
-                        </div>
-                    </li>
-                    <li>
-                        <time>0:10</time>
-                        <div><span>Greg,</span><span> were</span> <span>you</span> smoking cigarettes?
-                            - No, Dad. He's lying. There's no doubt about <span>that.</span>
-                        </div>
-                    </li>
-                    <li>
-                        <time>0:15</time>      
-                        <div><span>He's lying. There's no doubt about that.</span></div>
-                    </li>
-                    <li>
-                        <time>0:33</time>
-                        <div><span>Greg, I'm afraid your punishment
-                            will be four hours in the snakepit.</span></div>
-                    </li>
+                <ul id="subtitle" class="sub-list">
+            
                 </ul>
             </div>
         </section>

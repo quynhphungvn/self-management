@@ -33,17 +33,6 @@ function showMessageFail(resultObj) {
 function showMessageSuccess() {
 	alert("Success!");
 }
-function clearActiveClass(el) {
-	let childNodes = el.children;
-	for (let i = 0; i < childNodes.length; i++) {
-		childNodes[i].className = childNodes[i].className.replace("active", "");
-	}
-}
-function addActiveClass(el) {
-	let parent = el.parentElement;
-	clearActiveClass(parent);
-	el.className = el.className + " active";
-}
 /////////////////////////////** Add group **//////////////////////////////////////////////
 function addVideoGroupByName() {
 	let groupName = getGroupNameFromInput();
@@ -263,7 +252,7 @@ function showVideoInfo(response, el) {
 			document.querySelector("#vform-url").value = mes.data.url;
 			document.querySelector("#vform-select-group").value = mes.data.groupId;
 			document.querySelector("#vform-subtitle").value = mes.data.subtitle;
-			addActiveClass(el);
+			setActiveClass(el);
 			currentVideo = mes.data;
 		}
 		document.querySelector("#btn-add-video").disabled = true;

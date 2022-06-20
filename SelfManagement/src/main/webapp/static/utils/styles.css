@@ -40,6 +40,9 @@ input, select, textarea {
 .ml-1 {
 	margin-left: 0.5rem;
 }
+.mx-1 {
+	margin: 0 0.5rem;
+}
 .p-1 {
 	padding: 0.5rem;
 }

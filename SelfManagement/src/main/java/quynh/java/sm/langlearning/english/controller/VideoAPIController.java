@@ -103,6 +103,15 @@ public class VideoAPIController extends HttpServlet {
 			else 
 				smm = responseMessage.createResponseMessage(SMStatus.FAIL, null);
 		}
+		else if (action.equals(SMAction.UPDATE_VIDEO_VIEW_COUNT.getStatus())) {
+			int videoId = Integer.parseInt(request.getParameter("videoId"));
+			int userId = 1;
+			int newViewCount = videoService.updateVideoViewCount(videoId, userId);
+			if (newViewCount != 0) 
+				smm = responseMessage.createResponseMessage(SMStatus.SUCCESS, newViewCount);
+			else 
+				smm = responseMessage.createResponseMessage(SMStatus.FAIL, null);
+		}
 		else {}
 		out.print(gson.toJson(smm));
 	}

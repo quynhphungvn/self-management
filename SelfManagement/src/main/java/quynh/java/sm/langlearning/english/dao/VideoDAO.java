@@ -166,4 +166,25 @@ public class VideoDAO {
 		}
 		return result;
 	}
+
+	public int updateVideoViewCount(int videoId , int userId) {
+		Connection conn = null;
+		int newViewCount = 0;
+		try {
+			conn = JDBCConnect.getMySQLConnection();
+			String sql = "update video set view_count = view_count + 1 where id=? and user_id=?;";
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, videoId);
+			pstm.setInt(2, userId);
+			int result = pstm.executeUpdate();
+			if (result == 1) {
+				Video v = this.getVideoById(videoId, userId);
+				newViewCount = v.getViewCount();
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return newViewCount;
+	}
 }

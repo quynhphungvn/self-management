@@ -13,8 +13,10 @@ var Action = {
 	ADD_VIDEO: "ADD_VIDEO",
 	GET_VIDEO_BY_ID: "GET_VIDEO_INFO_BY_ID",
 	UPDATE_VIDEO: "UPDATE_VIDEO",
-	DELETE_VIDEO: "DELETE_VIDEO"
-	
+	DELETE_VIDEO: "DELETE_VIDEO",
+	GET_WORDKNOWNS: "GET_WORDKNOWNS",
+	ADD_WORD_TO_WORD_KNOWN: "ADD_WORD_TO_WORD_KNOWN",
+	UPDATE_VIDEO_VIEW_COUNT: "UPDATE_VIDEO_VIEW_COUNT"
 }
 var MessageStatus = {
 	SUCCESS: "SUCCESS",
@@ -67,6 +69,14 @@ var apiURL = {
 				{ name: "charset", value: "UTF-8" },
 				{ name: "content-type", value: "application/x-www-form-urlencoded" }
 			]
+		},
+		updateViewCount: {
+			url: "/SelfManagement/langlearning/english/video/api/",
+			method: "POST",
+			headers: [
+				{ name: "charset", value: "UTF-8" },
+				{ name: "content-type", value: "application/x-www-form-urlencoded" }
+			]
 		}
 	},
 	videoGroup: {
@@ -88,9 +98,8 @@ var apiURL = {
 		}
 	},
 	word: {
-		getAllWordKnown: {
-			action: Action.GET_ALL_WORD_KNOWN,
-			url: "/ss/englearn/word-known/api/?action=" + Action.GET_ALL_WORD_KNOWN,
+		getWordKnowns: {
+			url: "/SelfManagement/langlearning/english/word/api/",
 			method: "GET",
 			headers: [
 				{ name: "charset", value: "UTF-8" },
@@ -99,7 +108,7 @@ var apiURL = {
 		},
 		addWordToWordKnown: {
 			action: Action.ADD_WORD_TO_WORD_KNOWN,
-			url: "/ss/englearn/word-known/api/",
+			url: "/SelfManagement/langlearning/english/word/api/",
 			method: "POST",
 			headers: [
 				{ name: "charset", value: "UTF-8" },
@@ -203,4 +212,15 @@ function ajaxCall(requestInfo, callback, callbackParam) {
 	if (requestInfo.data)
 		xhttp.send(requestInfo.data);
 	else xhttp.send();
+}
+function clearActiveClass(el) {
+	let children = el.children;
+	for (let i = 0; i < children.length; i++) {
+		children[i].className = children[i].className.replace("active", "");
+	}
+}
+function setActiveClass(el) {
+	let parent = el.parentElement;
+	clearActiveClass(parent);
+	el.className = el.className + " active";
 }

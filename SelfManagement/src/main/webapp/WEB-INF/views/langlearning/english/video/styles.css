@@ -187,6 +187,13 @@ main {
     cursor: pointer;
     background-color: #ccc;
 }
+#subtitle span{
+	margin: 0 3px;
+	display: inline-block;
+}
+.word-unknown {
+	background-color: #e8cd6e;
+}
 @media screen and (max-width: 992px){
     
 }
@@ -227,7 +234,7 @@ main {
         padding: 0.25rem;
     }
     #video-sub .sub-list {
-        max-height: 700px;
+        max-height: 500px;
         overflow: auto;
     }
 }

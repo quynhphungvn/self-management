@@ -46,6 +46,12 @@
   	<description></description>
   	<servlet-class>quynh.java.sm.langlearning.english.controller.VideoAPIController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>WordAPIController</servlet-name>
+  	<display-name>WordAPIController</display-name>
+  	<description></description>
+  	<servlet-class>quynh.java.sm.langlearning.english.controller.WordAPIController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>SymbolController</servlet-name>
   	<url-pattern>/langlearning/english/symbol/</url-pattern>
@@ -73,5 +79,9 @@
   <servlet-mapping>
   	<servlet-name>VideoAPIController</servlet-name>
   	<url-pattern>/langlearning/english/video/api/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>WordAPIController</servlet-name>
+  	<url-pattern>/langlearning/english/word/api/</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -1,3 +1,4 @@
+a
 aardvark
 aardwolf
 aaron
@@ -7012,7 +7013,7 @@ canopied
 canopies
 canopy
 cans
-cant
+can't
 cantaloupe
 cantankerous
 cantata
@@ -11081,6 +11082,7 @@ coughed
 coughing
 coughs
 could
+couldn't
 couloir
 coulomb
 coulombs
@@ -15130,7 +15132,7 @@ doe
 doer
 doers
 does
-doesnt
+doesn't
 doffed
 doffing
 dog
@@ -15221,6 +15223,7 @@ dominion
 dominions
 domino
 don
+don't
 donate
 donated
 donates
@@ -23391,7 +23394,7 @@ hashed
 hashes
 hashing
 hashish
-hasnt
+hasn't
 hasp
 hassle
 haste
@@ -23468,7 +23471,7 @@ have
 haven
 havenots
 havens
-havent
+haven't
 havering
 haversack
 haves
@@ -24964,6 +24967,7 @@ hysteric
 hysterical
 hysterically
 hysterics
+i
 iambic
 iambus
 iatrogenic
@@ -46051,6 +46055,7 @@ shotgun
 shotguns
 shots
 should
+shouldn't
 shoulder
 shouldered
 shouldering
