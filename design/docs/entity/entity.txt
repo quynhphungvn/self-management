@@ -1,21 +1,23 @@
 @startuml
 entity video {
 *id: int 
-*title: varchar(100) 
+*title: varchar(100) NOT NULL
 *subtitle: text
-*url: varchar(100) 
-*group_id: int
-*user_id: int
-*view_count: int 
+*url: varchar(100) NOT NULL
+*group_id: int NOT NULL
+*user_id: int NOT NULL
+*view_count: int
+*UNIQUE(url, group_id, user_id) 
 }
 entity video_group {
 *id: int 
-*name: varchar(30) 
-*user_id: int 
+*name: varchar(30) NOT NULL
+*user_id: int NOT NULL
+*UNIQUE(user_id, name)
 }
 entity user {
 *id: int
-*username: varchar(100) 
+*username: varchar(100) NOT NULL UNIQUE 
 *password: varchar(32)
 }
 entity symbol_view_info {
@@ -24,19 +26,21 @@ entity symbol_view_info {
 *symbol_id: int
 *view_count: int
 }
-entity dictionary {
+entity word {
 *id: int 
-*word: varchar(25) 
+*word: varchar(25) NOT NULL UNIQUE
 *phonetic: varchar(20)
+*user_add: boolean
 }
-entity word_known {
+entity word_review {
 *id: int 
 *word_id: int 
 *user_id: int 
+*known: boolean
 }
 entity symbol {
 *id: int 
-*symbol: varchar(10) 
+*symbol: varchar(10) NOT NULL UNIQUE
 *example: varchar(20)
 *example_phonetic: varchar(20)
 *video_guide_url: varchar(100)
@@ -44,38 +48,11 @@ entity symbol {
 *type: varchar(15)
 }
 user ||--o{ video_group
-user ||--o{ word_known
+user ||--o{ word_review
 user ||--|| symbol_view_info
 user ||--o{ video
 symbol ||--|| symbol_view_info
-dictionary ||--o{ word_known
+word ||--o{ word_review
 video_group ||--o{ video
-note left of user
- id: not null auto_increment 
- username: not null unique
- password_hash: not null
-end note
-note right of video
- id:not null auto_increment 
- group_id: not null
- title: not null
- url: not null
-end note
-note left of video_group
- id: not null auto_increment 
- name: not null unique
-end note
-note right of symbol
- id: not null auto_increment 
- symbol: not null unique
-end note
-note right of word_known
- id: not null auto_increment
- word_id: not null
- user_id: not null
-end note
-note right of dictionary
- id: not null auto_increment
- word: not null unique
-end note
+
 @enduml
