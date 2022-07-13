@@ -14,7 +14,7 @@
   	<servlet-name>SymbolAPIController</servlet-name>
   	<display-name>SymbolAPIController</display-name>
   	<description></description>
-  	<servlet-class>quynh.java.sm.langlearning.english.controller.SymbolAPIController</servlet-class>
+  	<servlet-class>quynh.java.sm.langlearning.english.api.controller.SymbolAPIController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>VideoWatchingController</servlet-name>
@@ -32,25 +32,25 @@
   	<servlet-name>VideoGroup</servlet-name>
   	<display-name>VideoGroup</display-name>
   	<description></description>
-  	<servlet-class>quynh.java.sm.langlearning.english.controller.VideoGroupAPIController</servlet-class>
+  	<servlet-class>quynh.java.sm.langlearning.english.api.controller.VideoGroupAPIController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>EnglishManageAPIController</servlet-name>
   	<display-name>EnglishManageAPIController</display-name>
   	<description></description>
-  	<servlet-class>quynh.java.sm.langlearning.english.controller.EnglishManageAPIController</servlet-class>
+  	<servlet-class>quynh.java.sm.langlearning.english.api.controller.EnglishManageAPIController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>VideoAPIController</servlet-name>
   	<display-name>VideoAPIController</display-name>
   	<description></description>
-  	<servlet-class>quynh.java.sm.langlearning.english.controller.VideoAPIController</servlet-class>
+  	<servlet-class>quynh.java.sm.langlearning.english.api.controller.VideoAPIController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>WordAPIController</servlet-name>
   	<display-name>WordAPIController</display-name>
   	<description></description>
-  	<servlet-class>quynh.java.sm.langlearning.english.controller.WordAPIController</servlet-class>
+  	<servlet-class>quynh.java.sm.langlearning.english.api.controller.WordAPIController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>SymbolController</servlet-name>

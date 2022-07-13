@@ -1,68 +1,21 @@
 package quynh.java.sm.langlearning.english.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Video {
 	private int id;
 	private String title;
 	private String url;
 	private String subtitle;
-	private int groupId;
-	private int userId;
+	private Group group;
 	private int viewCount;
-	
-	public Video() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Video(int id, String title, String url, String subtitle, int groupId, int userId, int viewCount) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.url = url;
-		this.subtitle = subtitle;
-		this.groupId = groupId;
-		this.userId = userId;
-		this.viewCount = viewCount;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getUrl() {
-		return url;
-	}
-	public void setUrl(String url) {
-		this.url = url;
-	}
-	public String getSubtitle() {
-		return subtitle;
-	}
-	public void setSubtitle(String subtitle) {
-		this.subtitle = subtitle;
-	}
-	public int getGroupId() {
-		return groupId;
-	}
-	public void setGroupId(int groupId) {
-		this.groupId = groupId;
-	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-	public int getViewCount() {
-		return viewCount;
-	}
-	public void setViewCount(int viewCount) {
-		this.viewCount = viewCount;
-	}
 }

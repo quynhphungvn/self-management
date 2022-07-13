@@ -13,7 +13,7 @@
 </head>
 <body>
 	<%
-		List<VideoGroup> listVideoGroup = (List<VideoGroup>) request.getAttribute("listVideoGroup");
+	List<Group> listVideoGroup = (List<Group>) request.getAttribute("listVideoGroup");
 	%>
 	<header id="header">
         <button onclick="showLeftMenu()"><i class="fa fa-bars"></i></button>   
@@ -42,7 +42,10 @@
     </aside>
     <main>
         <section id="player">
-           <iframe width="560" height="315" src="https://www.youtube.com/embed/7bRfgy25cNA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>             
+           <iframe width="890" height="500" src="https://www.youtube.com/embed/7bRfgy25cNA" 
+           	title="YouTube video player" frameborder="0" 
+           	allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+           	allowfullscreen></iframe>             
         </section>
         <section id="bonus-info">
             <div class="tab">
@@ -53,9 +56,9 @@
                 <select id="select-video-group" onchange="getVideosOfGroup()">
                 	<option value="-1">Choose Group...</option>
                     <%
-                    	for (VideoGroup vg : listVideoGroup) {
-                    		out.print("<option value='"+vg.getId()+"'>"+vg.getName()+"</option>");
-                    	}
+                    for (Group vg : listVideoGroup) {
+                                        		out.print("<option value='"+vg.getId()+"'>"+vg.getName()+"</option>");
+                                        	}
                     %>
                 </select>
                 <ul id="videos-of-group">

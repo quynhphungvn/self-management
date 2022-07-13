@@ -1,26 +1,18 @@
 package quynh.java.sm.langlearning.english.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Word {
 	private int id;
-	private String word;
+	private String content;
 	private String phonetic;
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getWord() {
-		return word;
-	}
-	public void setWord(String word) {
-		this.word = word;
-	}
-	public String getPhonetic() {
-		return phonetic;
-	}
-	public void setPhonetic(String phonetic) {
-		this.phonetic = phonetic;
-	}
 }

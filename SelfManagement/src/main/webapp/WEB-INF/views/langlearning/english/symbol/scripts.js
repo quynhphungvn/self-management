@@ -6,16 +6,7 @@ function closeLeftMenu() {
     let menu = document.getElementById("left-menu");
     menu.style.left = "-300px";
 }
-function showSymbolGuide(evt, tabContentId) {
-    let tabLinks = document.getElementsByClassName("tab-links");
-    for (let i = 0; i < tabLinks.length; i++) 
-        tabLinks.item(i).className = tabLinks.item(i).className.replace("active", "");
-    let tabContents = document.getElementsByClassName("tab-content");
-    for (let i = 0; i < tabContents.length; i++) 
-        tabContents.item(i).style.display = "none";
-    document.getElementById(tabContentId).style.display = "flex";
-    evt.currentTarget.className += " active";
-}
+
 function chooseSymbol(evt, id) {
 	let tdEls = document.getElementsByTagName("td");
 	for (let i = 0; i < tdEls.length; i++) {
@@ -23,15 +14,18 @@ function chooseSymbol(evt, id) {
 	}
 	evt.currentTarget.className += " active";
 	const requestInfo = {
-		url: apiURL.symbol.getById.url + "?id=" + id,
-		method: apiURL.symbol.getById.method,
-		headers: apiURL.symbol.getById.headers,
+		url: "/SelfManagement/langlearning/english/symbol/api/" + "?id=" + id,
+		method: "GET",
+		headers:[
+				{ name: "charset", value: "UTF-8" },
+				{ name: "content-type", value: "application/x-www-form-urlencoded" }
+		],
 		data: null
 	};
 	ajaxCall(requestInfo, symbolShowContent, null);
 }
 function symbolShowContent(symbolText) {
-	let symbol = JSON.parse(symbolText);	
+	let symbol = JSON.parse(symbolText).data;	
 	let iframeVideoEl = document.getElementById("ipa-player-iframe");
 	let examWordEl = document.getElementById("ipa-exam-word");
 	let examPhoneticEl = document.getElementById("ipa-exam-phonetic");
@@ -40,8 +34,8 @@ function symbolShowContent(symbolText) {
 	let videoId = symbol.videoGuideURL.split("v=").pop();
 	let videoEmbedGuideLink = "https://www.youtube.com/embed/" + videoId;
 	iframeVideoEl.setAttribute("src", videoEmbedGuideLink);
-	let imgGuideEl = document.getElementById("symbol-image");
+	let imgGuideEl = document.getElementById("symbol-image").getElementsByTagName("img").item(0);
 	imgGuideEl.setAttribute("src", "/SelfManagement/static/images/ipa-symbol" + symbol.imgGuideURL);
-	document.getElementById("symbol-title").textContent = "/" + symbol.symbol + "/";
+	document.getElementById("symbol-title").textContent = "/" + symbol.content + "/";
 	document.getElementById("symbol-view").textContent = symbol.viewCount;
 }

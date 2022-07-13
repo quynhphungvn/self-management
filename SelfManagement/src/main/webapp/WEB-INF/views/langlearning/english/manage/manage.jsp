@@ -13,7 +13,7 @@
 </head>
 <body>
 	<%
-		List<VideoGroup> listVideoGroup = (List<VideoGroup>)request.getAttribute("listVideoGroup");
+	List<Group> listVideoGroup = (List<Group>)request.getAttribute("groups");
 	%>
 	<header id="header">
         <button onclick="showLeftMenu()"><i class="fa fa-bars"></i></button>   
@@ -56,9 +56,9 @@
 							<select id="gform-select-group" onchange="chooseVideoGroupGForm(this)">
 								<option value="-1">Choose Group... </option>
 								<%
-									for (VideoGroup v : listVideoGroup) {
-										out.print("<option value='"+ v.getId() +"'>" + v.getName() + "</option>");
-									}
+								for (Group v : listVideoGroup) {
+									out.print("<option value='"+ v.getId() +"'>" + v.getName() + "</option>");
+								}
 								%>
 							</select>
 							<div class="ml-1">
@@ -90,9 +90,9 @@
 							<select id="vform-select-group">	
 								<option value="-1">---</option>
 								<%
-									for (VideoGroup v : listVideoGroup) {
-										out.print("<option value='"+ v.getId() +"'>" + v.getName() + "</option>");
-									}
+								for (Group v : listVideoGroup) {
+									out.print("<option value='"+ v.getId() +"'>" + v.getName() + "</option>");
+								}
 								%>		
 							</select>
 						</div>

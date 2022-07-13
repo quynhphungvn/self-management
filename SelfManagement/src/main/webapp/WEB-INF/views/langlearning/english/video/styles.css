@@ -192,7 +192,10 @@ main {
 	display: inline-block;
 }
 .word-unknown {
-	background-color: #e8cd6e;
+	background-color: rgb(252, 233, 79, 0.5);
+}
+.word-selected {
+	background-color: #f57900;
 }
 @media screen and (max-width: 992px){
     

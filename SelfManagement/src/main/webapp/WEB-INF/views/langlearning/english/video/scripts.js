@@ -130,7 +130,7 @@ function buildHtmlSubtitle(response, subtitle) {
 function createHtmlForWord(word, wordKnowns) {
 	let pureWord = removeUnexpectChar(word.toLowerCase());
 	if (wordKnowns.includes(" "+ pureWord + " ")) {
-		return "<span onclick=\"chooseWord(this)\">" + word + "</span>";
+		return "<span onclick=\"chooseWord(this)\" class=\"temp\">" + word + "</span>";
 	} else {
 		return "<span class=\"word-unknown\" onclick=\"chooseWord(this)\">" + word + "</span>";
 	}
@@ -139,6 +139,7 @@ function chooseWord(el) {
 	let word = removeUnexpectChar(el.textContent.toLowerCase());
 	document.querySelector("#input-lookup").value = word;
 	setWordToLinkLookup(word);
+	setBgForWords(word);
 }
 function setWordToLinkLookup(word) {
 	let linkYouglish = "https://youglish.com/pronounce/" + word + "/english?";
@@ -149,6 +150,19 @@ function setWordToLinkLookup(word) {
 	document.getElementById("link-google").setAttribute("href", linkGoogle);
 	document.getElementById("link-cambridge").setAttribute("href", linkCambridge);
 	document.getElementById("link-tratu").setAttribute("href", linkTratu);
+}
+function setBgForWords(word) {
+	let allSpanEl = document.querySelector("#subtitle").getElementsByTagName("span");
+	for (let i = 0; i < allSpanEl.length; i++) {
+		let spanContent = removeUnexpectChar(allSpanEl.item(i).textContent.toLowerCase());
+		if (word == spanContent) {
+			console.log(allSpanEl.item(i));
+			allSpanEl.item(i).classList.remove("word-selected");
+			allSpanEl.item(i).classList.add("word-selected");
+		}
+		else 
+			allSpanEl.item(i).classList.remove("word-selected");
+	}
 }
 function addWordToWordKnown() {
 	let word = document.getElementById("input-lookup").value;
@@ -174,8 +188,10 @@ function changeBackgroundForWord(word, action) {
 	let wordEls = subEl.getElementsByTagName("span");
 	if (action == "add") {
 		for (let i = 0; i < wordEls.length; i++) {
-			if (removeUnexpectChar(wordEls[i].textContent) == word)
+			if (removeUnexpectChar(wordEls[i].textContent) == word){
 				wordEls[i].classList.remove("word-unknown");
+				wordEls[i].classList.remove("word-selected");
+			}
 		}
 	}
 	else if (action == "remove") {

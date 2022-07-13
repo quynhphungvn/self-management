@@ -1,10 +1,9 @@
 package quynh.java.sm.support.app.message;
 
+import lombok.Data;
+
+@Data
 public class ResponseMessage {
-	public SMMessage createResponseMessage(SMStatus status, Object data) {
-		SMMessage mes = new SMMessage();
-		mes.setStatus(status.getStatus());
-		mes.setData(data);
-		return mes;
-	}
+	private String status;
+	private Object data;
 }

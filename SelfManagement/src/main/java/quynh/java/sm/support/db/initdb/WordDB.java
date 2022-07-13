@@ -10,18 +10,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import quynh.java.sm.langlearning.english.dao.impl.DictionaryDaoImpl;
 import quynh.java.sm.support.db.util.JDBCConnect;
 
 public class WordDB {
-	public List<String> readFile() {
-		String file ="src/main/resources/engwords.txt";	     
+	private Connection conn;
+	private DictionaryDaoImpl wordDao;
+	public WordDB() {
+		wordDao = new DictionaryDaoImpl();
+		try {
+			conn = JDBCConnect.getMySQLConnection();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public List<String> readFile(String filePath) {     
 	    ArrayList<String> wordList = new ArrayList<String>(); 
 	    try {
-	        File myFile = new File(file);
+	        File myFile = new File(filePath);
 	        Scanner myReader = new Scanner(myFile);
 	        while (myReader.hasNextLine()) {
-	          String data = myReader.nextLine();
-	          wordList.add(data);
+	          String[] data = myReader.nextLine().split(" ");
+	          for (String s : data)
+	          wordList.add(s);
 	        }
 	        myReader.close();
 	      } catch (FileNotFoundException e) {
@@ -30,13 +45,12 @@ public class WordDB {
 	      }
 	    return wordList;
 	}
-	public void initWordTable() {
-		List<String> words = this.readFile();
-		Connection conn = null;
+	public void initDictionaryTable(Connection conn) {
+		String filePath ="src/main/resources/engwords.txt";	
+		List<String> words = this.readFile(filePath);
 		try {
-			conn = JDBCConnect.getMySQLConnection();
-			String sql = "insert into word (word, user_add) values (?, false);";
-			String sqlCheckExist = "select id from word where word=?";
+			String sql = "insert into dictionary(content, user_id) values (?, 0);";
+			String sqlCheckExist = "select id from dictionary where word=?";
 			PreparedStatement pstm = conn.prepareStatement(sql);
 			PreparedStatement pstmCheckExist = conn.prepareStatement(sqlCheckExist);
 			for (String s: words) {
@@ -50,7 +64,7 @@ public class WordDB {
 				else System.out.println(s + " existed!");	
 			}
 			pstm.close();
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
@@ -62,8 +76,26 @@ public class WordDB {
 			}
 		}
 	}
+	public void initWordKnown() {
+		String filePath ="src/main/resources/wordknown.txt";	
+		List<String> wordsRaw = this.readFile(filePath);
+		List<String> words = new ArrayList<String>();
+		for (String word : wordsRaw)
+		{
+			if (!findWordInList(word, words))
+				words.add(word);
+		}
+		for (String s : words) {
+			//wordDao.addWordToManage(conn, s, 1, true);
+		}
+	}
+	public boolean findWordInList(String word, List<String> wordList) {
+		for (String s : wordList) 
+			if (s.equals(word)) return true;
+		return false;
+	}
 	public static void main(String[] args) {
 		WordDB ddb = new WordDB();
-		ddb.initWordTable();
+		ddb.initWordKnown();
 	}
 }

@@ -9,22 +9,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import quynh.java.sm.langlearning.english.model.VideoGroup;
-import quynh.java.sm.langlearning.english.service.VideoGroupService;
+import quynh.java.sm.langlearning.english.dto.GroupDto;
+import quynh.java.sm.langlearning.english.model.Group;
+import quynh.java.sm.langlearning.english.service.GroupService;
+import quynh.java.sm.langlearning.english.service.impl.GroupServiceImpl;
 
 /**
  * Servlet implementation class EnglishManage
  */
 public class EnglishManageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private VideoGroupService videoGroupService;
+	private GroupService groupService;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public EnglishManageController() {
         super();
-        videoGroupService = new VideoGroupService();
+        groupService = new GroupServiceImpl();
         // TODO Auto-generated constructor stub
     }
 
@@ -32,16 +34,10 @@ public class EnglishManageController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpServletRequest req = this.prepareDataForManagePage(request);
-		this.forwardJsp(req, response);
-	}
-	private HttpServletRequest prepareDataForManagePage(HttpServletRequest request) {
 		int userId = 1;
-		List<VideoGroup> listVideoGroup = videoGroupService.getVideoGroupsByUserId(userId);
-		request.setAttribute("listVideoGroup", listVideoGroup);
-		return request;
-	}
-	private void forwardJsp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String type="video";
+		List<GroupDto> groups = groupService.getAll(userId, type);
+		request.setAttribute("groups", groups);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/langlearning/english/manage/manage.jsp");
 		rd.forward(request, response);
 	}

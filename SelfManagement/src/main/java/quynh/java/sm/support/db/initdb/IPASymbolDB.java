@@ -9,9 +9,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import quynh.java.sm.langlearning.english.dao.TypeDao;
+import quynh.java.sm.langlearning.english.dao.impl.TypeDaoImpl;
 import quynh.java.sm.support.db.util.JDBCConnect;
 
 public class IPASymbolDB {
+	private Connection conn;
+	private TypeDao typeDao;
+	public IPASymbolDB() {
+		try {
+			conn = JDBCConnect.getMySQLConnection();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		typeDao = new TypeDaoImpl(conn);
+	}
 	public List<String> readFile() {
 		String file ="src/main/resources/ipa-symbol.txt";	     
 	    List<String> symbols = new ArrayList<String>(); 
@@ -35,7 +51,7 @@ public class IPASymbolDB {
 		PreparedStatement pstm = null;
 		try {
 			conn = JDBCConnect.getMySQLConnection();			
-			String sql = "insert into ipa_symbol (symbol, example, example_phonetic, image_guide_url, video_guide_url, type) "
+			String sql = "insert into symbol (content, example, example_phonetic, image_guide_url, video_guide_url, type_id) "
 					+ "values (?,?,?,?,?,?)";
 			pstm = conn.prepareStatement(sql);		
 			for (String s: symbols) {
@@ -45,15 +61,15 @@ public class IPASymbolDB {
 				pstm.setString(3, symbolParts[2].trim());
 				pstm.setString(4, symbolParts[3].trim());
 				pstm.setString(5, symbolParts[4].trim());
-				pstm.setString(6, symbolParts[5].trim());
+				String typeName = symbolParts[5].trim();
+				pstm.setInt(6, typeDao.find(typeName).getId());
 				pstm.executeUpdate();
 			}	
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			try {
-				
+			try {	
 				pstm.close();
 				conn.close();
 			} catch (SQLException e) {

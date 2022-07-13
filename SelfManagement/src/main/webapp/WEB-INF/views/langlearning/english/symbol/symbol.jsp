@@ -10,6 +10,8 @@
     <title>Document</title>
     <style><%@include file="./styles.css"%></style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/SelfManagement/static/utils/styles.css">
+	<script src="/SelfManagement/static/utils/scripts.js"></script>
 </head>
 <body>
     <header id="header">
@@ -40,27 +42,31 @@
     <main>
 		<div id="player">
 			<div class="tab">
-				<button class="tab-links active"
-					onclick="showSymbolGuide(event, 'symbol-video')">Video</button>
-				<button class="tab-links"
-					onclick="showSymbolGuide(event, 'symbol-image')">Image</button>
-			</div>
-			<div id="symbol-video" class="tab-content">
-				<iframe id="ipa-player-iframe" width="560" height="315"
-					src="https://www.youtube.com/embed/j9E9mMAtoqQ"
-					title="YouTube video player" frameborder="0"
-					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-					allowfullscreen></iframe>
-				<!-- <video width="100%"controls id="symbol-video" class="tab-content">
+				<div class="tab-bar">
+					<button class="tab-links active"
+						onclick="showTabContent(event, 'symbol-video')">Video</button>
+					<button class="tab-links"
+						onclick="showTabContent(event, 'symbol-image')">Image</button>
+				</div>
+				<div id="symbol-video" class="tab-content">
+					<iframe id="ipa-player-iframe" width="560" height="315"
+						src="https://www.youtube.com/embed/j9E9mMAtoqQ"
+						title="YouTube video player" frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen></iframe>
+					<!-- <video width="100%"controls id="symbol-video" class="tab-content">
                 <source src="../src/1.webm" type="video/webm">
             </video> -->
+				</div>
+				<div  id="symbol-image" class="tab-content d-none">
+				<img src="/SelfManagement/static/images/tien.png" width="100%"
+					  />
+				</div>
 			</div>
-			<img src="/SelfManagement/static/images/tien.png" width="100%"
-				id="symbol-image" class="tab-content" />
-
 			<h4 id="ipa-exam-word">Exam</h4>
 			<h4 id="ipa-exam-phonetic">/Phonetic/</h4>
-			<h4><b id="symbol-title"></b><i class="fa fa-eye"></i><b
+			<h4>
+				<b id="symbol-title"></b><i class="fa fa-eye"></i><b
 					id="symbol-view"></b>
 			</h4>
 		</div>
@@ -69,23 +75,23 @@
 				<h3>Symbols</h3>
 			</caption>
 			<%
-			List<Symbol> listIPASymbol = (ArrayList<Symbol>) request.getAttribute("list-ipa-symbol");
-				if (listIPASymbol != null) {
+			List<Symbol> symbols = (ArrayList<Symbol>) request.getAttribute("symbols");
+				if (symbols != null) {
 
 				}
 				List<Symbol> vowel = new ArrayList<Symbol>();
 				List<Symbol> consonant = new ArrayList<Symbol>();
 				List<Symbol> rColoredVowel = new ArrayList<Symbol>();
 				List<Symbol> diphthong = new ArrayList<Symbol>();
-				for (int i = 0; i < listIPASymbol.size(); i++) {		
-					Symbol tempSymbol = listIPASymbol.get(i);			
-					if (tempSymbol.getType().equals("vowel")){
+				for (int i = 0; i < symbols.size(); i++) {		
+					Symbol tempSymbol = symbols.get(i);			
+					if (tempSymbol.getType().getName().equals("vowel")){
 						vowel.add(tempSymbol);				
 					}
-					else if (tempSymbol.getType().equals("consonant")){
+					else if (tempSymbol.getType().getName().equals("consonant")){
 						consonant.add(tempSymbol);	
 					}
-					else if (tempSymbol.getType().equals("r-colored-vowel")) {
+					else if (tempSymbol.getType().getName().equals("r-colored-vowel")) {
 						rColoredVowel.add(tempSymbol);				
 					}
 					else {
@@ -98,7 +104,7 @@
 					<th scope="row">Vowel</th>
 					<%
 					for (int i = 0; i < vowel.size(); i++)
-						out.print("<td onclick=\"chooseSymbol(event, '" + vowel.get(i).getId() + "')\"><span>" + vowel.get(i).getSymbol()
+						out.print("<td onclick=\"chooseSymbol(event, '" + vowel.get(i).getId() + "')\"><span>" + vowel.get(i).getContent()
 						+ "</span></td>");
 					%>
 				</tr>
@@ -110,7 +116,7 @@
 						out.print("<tr>");
 						out.print("<th scope=\"row\" rowspan=\"3\">Consonant</th>");
 					}
-					out.print("<td onclick=\"chooseSymbol(event, '" + consonant.get(i).getId() + "')\"><span>" + consonant.get(i).getSymbol()
+					out.print("<td onclick=\"chooseSymbol(event, '" + consonant.get(i).getId() + "')\"><span>" + consonant.get(i).getContent()
 					+ "</span></td>");
 				}
 				out.print("<tr>");
@@ -120,14 +126,14 @@
 					<%
 					for (int i = 0; i < rColoredVowel.size(); i++)
 						out.print("<td onclick=\"chooseSymbol(event, '" + rColoredVowel.get(i).getId() + "')\"><span>"
-						+ rColoredVowel.get(i).getSymbol() + "</span></td>");
+						+ rColoredVowel.get(i).getContent() + "</span></td>");
 					%>
 				</tr>
 				<tr>
 					<th scope="row">Diphthong</th>
 					<%
 					for (int i = 0; i < diphthong.size(); i++)
-						out.print("<td onclick=\"chooseSymbol(event, '" + diphthong.get(i).getId() + "')\"><span>" + diphthong.get(i).getSymbol()
+						out.print("<td onclick=\"chooseSymbol(event, '" + diphthong.get(i).getId() + "')\"><span>" + diphthong.get(i).getContent()
 						+ "</span></td>");
 					%>
 				</tr>
