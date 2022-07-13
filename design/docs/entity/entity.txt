@@ -5,54 +5,60 @@ entity video {
 *subtitle: text
 *url: varchar(100) NOT NULL
 *group_id: int NOT NULL
-*user_id: int NOT NULL
 *view_count: int
-*UNIQUE(url, group_id, user_id) 
+*UNIQUE(url, group_id) 
 }
-entity video_group {
+entity all_group {
 *id: int 
-*name: varchar(30) NOT NULL
+*name: varchar(100) NOT NULL
 *user_id: int NOT NULL
-*UNIQUE(user_id, name)
+*type: varchar(20)
+*UNIQUE(name, user_id, type)
 }
 entity user {
 *id: int
 *username: varchar(100) NOT NULL UNIQUE 
 *password: varchar(32)
 }
-entity symbol_view_info {
+entity symbol_learning {
 *id: int
 *user_id: int
 *symbol_id: int
 *view_count: int
+*UNIQUE(user_id, symbol_id)
 }
-entity word {
+entity dictionary {
 *id: int 
-*word: varchar(25) NOT NULL UNIQUE
+*content: varchar(25) NOT NULL UNIQUE
 *phonetic: varchar(20)
-*user_add: boolean
 }
-entity word_review {
+entity word_learning {
 *id: int 
 *word_id: int 
 *user_id: int 
-*known: boolean
+*known_state: boolean
+*appear_times: int
+*type: varchar(20)
+*UNIQUE (user_id, word_id, type)
 }
 entity symbol {
 *id: int 
-*symbol: varchar(10) NOT NULL UNIQUE
+*content: varchar(10) NOT NULL UNIQUE
 *example: varchar(20)
 *example_phonetic: varchar(20)
 *video_guide_url: varchar(100)
 *image_guide_url: varchar(100)
-*type: varchar(15)
+*type: varchar(20)
 }
-user ||--o{ video_group
-user ||--o{ word_review
-user ||--|| symbol_view_info
-user ||--o{ video
-symbol ||--|| symbol_view_info
-word ||--o{ word_review
-video_group ||--o{ video
-
+entity temp_word {
+*id: int
+*content: varchar(25) unique
+}
+user ||--o{ all_group
+user ||--o{ word_learning
+user ||--|| symbol_learning
+symbol ||--|| symbol_learning
+dictionary ||--o{ word_learning
+all_group ||--o{ video
+temp_word ||--|{ word_learning
 @enduml
